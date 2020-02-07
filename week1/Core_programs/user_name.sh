@@ -1,4 +1,5 @@
 #!/bin/bash
 
-read user_name
-echo "Hi $user_name ,How are you?"
+user="Hello <<UserName>>, How are you?"
+read -p "Enter your name : " user_name
+echo "${user/<<UserName>>/$user_name}"
