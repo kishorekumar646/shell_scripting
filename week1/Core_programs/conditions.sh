@@ -1,13 +1,11 @@
+
 #!/bin/sh
 
-a=10
-b=20
-if [ $a -eq $b ]
+if [ $1 -gt 100 ]
 then
-	echo "Is qual"
-fi
-
-if [ $a -ne $b ]
-then
-	echo "is not equal"
+	echo "1 is greate than 100"
+	if [ 100 -lt $1 ]
+	then
+		echo "1 less than 100"
+	fi
 fi
