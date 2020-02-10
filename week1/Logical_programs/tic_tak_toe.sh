@@ -56,6 +56,7 @@ display_winner()
 			 ]]; then
 			echo "X WINNER"
 			true=0
+			return
 		fi
 	fi
 	if [[ $O -eq -1 ]]; then
@@ -70,10 +71,14 @@ display_winner()
 			]]; then
 			echo "O WINNER"
 			true=0
+			return
 		fi
 	fi
-	if [[ $true -eq 0 ]]; then
-		echo "XO DRAW"
+	if [[ $X -eq 1 || $O -eq -1 ]]; then
+		if [[ $true -eq 0 ]]; then
+			echo "XO DRAW"
+			return
+		fi
 	fi
 }
 
@@ -86,12 +91,6 @@ for (( i = 0; i < 3; i++ )); do
 	for (( j = 0; j < 3; j++ )); do
 		board[$i,$j]=0
 	done
-done
-for (( a = 0; a < 3; a++ )); do
-	for (( b = 0; b < 3; b++ )); do
-		echo -n "${board[$a,$b]} "
-	done
-	echo
 done
 true=1	
 while [[ $true -eq 1 ]]; do
@@ -109,6 +108,5 @@ while [[ $true -eq 1 ]]; do
 	display_board $board $EMPTY $true
 	echo -e "\n_____________________\n"
 	c=$(( ${board[0,0]} + ${board[0,1]} + ${board[0,2]} ))
-	echo "c : $c"
 	display_winner $X $O $board $true
 done
