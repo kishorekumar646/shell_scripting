@@ -42,46 +42,38 @@ display_board()
 	done
 }
 
-isWin()
-{
-	if [[ $X -eq 1 ]]; then
-		echo "$true"
-		return $(( $((${board[0,0]} + ${board[0,1]} + ${board[0,2]})) == `expr 1 \* 3` ||
-			$((${board[1,0]} +  ${board[1,1]} + ${board[1,2]})) == `expr 1 \* 3` ||
-			$((${board[2,0]} +  ${board[2,1]} + ${board[2,2]})) == `expr 1 \* 3` ||
-			$((${board[0,0]} +  ${board[1,0]} + ${board[2,0]})) == `expr 1 \* 3` ||
-			$((${board[0,1]} +  ${board[1,1]} + ${board[2,1]})) == `expr 1 \* 3` ||
-			$((${board[0,2]} +  ${board[1,2]} + ${board[2,2]})) == `expr 1 \* 3` ||
-			$((${board[0,0]} +  ${board[1,1]} + ${board[2,2]})) == `expr 1 \* 3` ||
-			$((${board[2,0]} +  ${board[1,1]} + ${board[0,2]})) == `expr 1 \* 3`
-			))
-	fi
-	
-	if [[ $O -eq -1 ]]; then
-		return $(( $((${board[0,0]} +  ${board[0,1]} + ${board[0,2]})) == `expr $O \* 3` ||
-			$((${board[1,0]} +  ${board[1,1]} + ${board[1,2]})) == `expr -1 \* 3` ||
-			$((${board[2,0]} +  ${board[2,1]} + ${board[2,2]})) == `expr -1 \* 3` ||
-			$((${board[0,0]} +  ${board[1,0]} + ${board[2,0]})) == `expr -1 \* 3` ||
-			$((${board[0,1]} +  ${board[1,1]} + ${board[2,1]})) == `expr -1 \* 3` ||
-			$((${board[0,2]} +  ${board[1,2]} + ${board[2,2]})) == `expr -1 \* 3` ||
-			$((${board[0,0]} +  ${board[1,1]} + ${board[2,2]})) == `expr -1 \* 3` ||
-			$((${board[2,0]} +  ${board[1,1]} + ${board[0,2]})) == `expr -1 \* 3`
-			))
-	fi
-}
-
 display_winner()
 {
-	if isWin $X $board; then
-		echo -e "\n X WINNER \n"
-		true=0
-	elif isWin $O $board; then
-		echo -e "\n O WINNER \n"
-		true=0
-	else
-		if [[ $true -eq 0 ]]; then
-			echo -e "\n XO DRAW \n"
+	if [[ $X -eq 1 ]]; then
+		if [[ $(( ${board[0,0]} + ${board[0,1]} + ${board[0,2]} )) -eq `expr 1 \* 3` ||
+				$((${board[1,0]} +  ${board[1,1]} + ${board[1,2]})) -eq `expr 1 \* 3` ||
+				$((${board[2,0]} +  ${board[2,1]} + ${board[2,2]})) -eq `expr 1 \* 3` ||
+				$((${board[0,0]} +  ${board[1,0]} + ${board[2,0]})) -eq `expr 1 \* 3` ||
+				$((${board[0,1]} +  ${board[1,1]} + ${board[2,1]})) -eq `expr 1 \* 3` ||
+				$((${board[0,2]} +  ${board[1,2]} + ${board[2,2]})) -eq `expr 1 \* 3` ||
+				$((${board[0,0]} +  ${board[1,1]} + ${board[2,2]})) -eq `expr 1 \* 3` ||
+				$((${board[2,0]} +  ${board[1,1]} + ${board[0,2]})) -eq `expr 1 \* 3`
+			 ]]; then
+			echo "X WINNER"
+			true=0
 		fi
+	fi
+	if [[ $O -eq -1 ]]; then
+		if [[ $(( ${board[0,0]} + ${board[0,1]} + ${board[0,2]} )) -eq `expr -1 \* 3` ||
+				$((${board[1,0]} +  ${board[1,1]} + ${board[1,2]})) -eq `expr -1 \* 3` ||
+				$((${board[2,0]} +  ${board[2,1]} + ${board[2,2]})) -eq `expr -1 \* 3` ||
+				$((${board[0,0]} +  ${board[1,0]} + ${board[2,0]})) -eq `expr -1 \* 3` ||
+				$((${board[0,1]} +  ${board[1,1]} + ${board[2,1]})) -eq `expr -1 \* 3` ||
+				$((${board[0,2]} +  ${board[1,2]} + ${board[2,2]})) -eq `expr -1 \* 3` ||
+				$((${board[0,0]} +  ${board[1,1]} + ${board[2,2]})) -eq `expr -1 \* 3` ||
+				$((${board[2,0]} +  ${board[1,1]} + ${board[0,2]})) -eq `expr -1 \* 3`
+			]]; then
+			echo "O WINNER"
+			true=0
+		fi
+	fi
+	if [[ $true -eq 0 ]]; then
+		echo "XO DRAW"
 	fi
 }
 
@@ -114,16 +106,9 @@ while [[ $true -eq 1 ]]; do
 	read -p "x : " x
 	read -p "y : " y
 	insert $x $y $board $EMPTY $player
-	for (( a = 0; a < 3; a++ )); do
-		for (( b = 0; b < 3; b++ )); do
-			echo -n "${board[$a,$b]} "
-		done
-		echo
-	done
 	display_board $board $EMPTY $true
-	echo "$true"
 	echo -e "\n_____________________\n"
+	c=$(( ${board[0,0]} + ${board[0,1]} + ${board[0,2]} ))
+	echo "c : $c"
 	display_winner $X $O $board $true
-	echo "$true"
-
 done
