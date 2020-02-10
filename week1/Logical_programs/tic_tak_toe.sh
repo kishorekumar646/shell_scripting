@@ -13,9 +13,6 @@ insert()
 
 	board[$x,$y]=$player
 	player=`expr -1 \* $player`
-
-
-	
 }
 
 display_board()
@@ -47,16 +44,38 @@ display_board()
 
 isWin()
 {
-	winner=
-	return $(( $((${board[0,0]} +  ${board[0,1]} + ${board[0,2]})) == `expr $player \* 3` ))
+	if [[ $X -eq 1 ]]; then
+		echo "$true"
+		return $(( $((${board[0,0]} + ${board[0,1]} + ${board[0,2]})) == `expr 1 \* 3` ||
+			$((${board[1,0]} +  ${board[1,1]} + ${board[1,2]})) == `expr 1 \* 3` ||
+			$((${board[2,0]} +  ${board[2,1]} + ${board[2,2]})) == `expr 1 \* 3` ||
+			$((${board[0,0]} +  ${board[1,0]} + ${board[2,0]})) == `expr 1 \* 3` ||
+			$((${board[0,1]} +  ${board[1,1]} + ${board[2,1]})) == `expr 1 \* 3` ||
+			$((${board[0,2]} +  ${board[1,2]} + ${board[2,2]})) == `expr 1 \* 3` ||
+			$((${board[0,0]} +  ${board[1,1]} + ${board[2,2]})) == `expr 1 \* 3` ||
+			$((${board[2,0]} +  ${board[1,1]} + ${board[0,2]})) == `expr 1 \* 3`
+			))
+	fi
+	
+	if [[ $O -eq -1 ]]; then
+		return $(( $((${board[0,0]} +  ${board[0,1]} + ${board[0,2]})) == `expr $O \* 3` ||
+			$((${board[1,0]} +  ${board[1,1]} + ${board[1,2]})) == `expr -1 \* 3` ||
+			$((${board[2,0]} +  ${board[2,1]} + ${board[2,2]})) == `expr -1 \* 3` ||
+			$((${board[0,0]} +  ${board[1,0]} + ${board[2,0]})) == `expr -1 \* 3` ||
+			$((${board[0,1]} +  ${board[1,1]} + ${board[2,1]})) == `expr -1 \* 3` ||
+			$((${board[0,2]} +  ${board[1,2]} + ${board[2,2]})) == `expr -1 \* 3` ||
+			$((${board[0,0]} +  ${board[1,1]} + ${board[2,2]})) == `expr -1 \* 3` ||
+			$((${board[2,0]} +  ${board[1,1]} + ${board[0,2]})) == `expr -1 \* 3`
+			))
+	fi
 }
 
 display_winner()
 {
-	if isWin $X $player $board; then
+	if isWin $X $board; then
 		echo -e "\n X WINNER \n"
 		true=0
-	elif isWin $O $player $board; then
+	elif isWin $O $board; then
 		echo -e "\n O WINNER \n"
 		true=0
 	else
@@ -102,6 +121,9 @@ while [[ $true -eq 1 ]]; do
 		echo
 	done
 	display_board $board $EMPTY $true
-	echo -e "_____________________"
-	display_winner $X $O $board $true $player
+	echo "$true"
+	echo -e "\n_____________________\n"
+	display_winner $X $O $board $true
+	echo "$true"
+
 done
