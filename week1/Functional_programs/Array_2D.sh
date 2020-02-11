@@ -1,5 +1,9 @@
 #!/bin/bash
 
+<<comment
+	Dislay the 2D matrix
+comment
+
 declare -A array
 echo "Matrix mxn"
 read -p "Enter size of m : " rows
