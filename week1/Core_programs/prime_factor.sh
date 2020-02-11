@@ -1,5 +1,9 @@
 #!/bin/bash
 
+<<comment
+	print the prime factor of given number
+comment
+
 read -p "Enter the number : " number
 
 while [[ $((number % 2)) -eq 0 ]]; do
