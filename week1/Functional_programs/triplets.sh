@@ -1,5 +1,10 @@
 #!/bin/bash
 
+<<comment
+	A program with cubic running time. Read in N integers and counts the   
+	number of triples that sum to exactly 0.
+comment
+
 find_triplets()
 {
 	found=0
