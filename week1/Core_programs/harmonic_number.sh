@@ -1,9 +1,9 @@
 #!/bin/bash
 
-read -p "Enter the number : " number
+read -p "Enter the number : " numbers
 harmonic_sum=1
-for (( i = 2; i <= $number; i++ ))
+for (( number = 2; number <= $numbers; number++ ))
 do
-	c=$(echo "$harmonic_sum" "$i" | awk '{print $1 + (1/$2)}')
-	echo "$c"
+	sum=$(echo "$harmonic_sum" "$number" | awk '{print $1 + (1/$2)}')
+	echo "$sum"
 done
