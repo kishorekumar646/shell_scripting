@@ -7,10 +7,10 @@ while [[ $((number % 2)) -eq 0 ]]; do
 	number=$((number / 2))
 done
 
-for (( i = 3; i <=$(echo "sqrt ( $number )" | bc) ; i = i + 2)); do
-	while [[ $((number % i)) -eq 0 ]]; do
-		echo -e "$i"
-		number=$((number / i))
+for (( iterator = 3; iterator <=$(echo "sqrt ( $number )" | bc) ; iterator = iterator + 2)); do
+	while [[ $((number % iterator)) -eq 0 ]]; do
+		echo -e "$iterator"
+		number=$((number / iterator))
 	done
 done
 
