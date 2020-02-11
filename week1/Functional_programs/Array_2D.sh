@@ -3,17 +3,17 @@
 declare -A array
 echo "Matrix mxn"
 read -p "Enter size of m : " rows
-read -p "Enter size of n : " colmns
+read -p "Enter size of n : " columns
 
-for (( i = 0; i < rows; i++ )); do
-	for (( j = 0; j < colmns; j++ )); do
+for (( row = 0; row < rows; row++ )); do
+	for (( column = 0; column < columns; column++ )); do
 		read number
-		array[$i,$j]="$number"
+		array[$row,$column]="$number"
 	done
 done
-for (( a = 0; a < rows; a++ )); do
-	for (( b = 0; b < colmns; b++ )); do
-		echo -n "${array[$a,$b]} "
+for (( row = 0; row < rows; row++ )); do
+	for (( column = 0; column < columns; column++ )); do
+		echo -n "${array[$row,$column]} "
 	done
 	echo
 done
