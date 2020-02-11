@@ -1,7 +1,11 @@
 #!/bin/bash
 
-read -p 'Enter the number : ' number
-for (( i = 0; i < $number; i++ )); 
+<<comment
+	power of 2 table
+comment
+
+read -p 'Enter the number : ' numbers
+for (( number = 0; number < $numbers; number++ )); 
 do
-  echo "2 power of $i : "$((2 ** $i))
+  echo "2 power of $number : "$((2 ** $number))
 done
