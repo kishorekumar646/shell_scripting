@@ -1,6 +1,10 @@
 
 #!/bin/sh
 
+<<comment
+	check condition using if statements
+comment
+
 if [ $1 -gt 100 ]
 then
 	echo "1 is greate than 100"
