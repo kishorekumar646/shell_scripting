@@ -1,5 +1,14 @@
 #!/bin/bash
 
+<<comment
+
+	Given the temperature t (in Fahrenheit) and the wind speed v (in miles per hour), 
+	the National Weather Service defines the effective temperature (the wind chill) to be:
+
+	w = 35.74 + 0.6215 * t + (0.4275 * t - 35.75) * v ^ 0.16
+
+comment
+
 wind_chill()
 {
 	echo "hi"
