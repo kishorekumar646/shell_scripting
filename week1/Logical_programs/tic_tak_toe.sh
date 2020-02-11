@@ -1,5 +1,13 @@
 #!/bin/bash
 
+<<comment
+
+	Write a Program to play a Cross Game or Tic-Tac-Toe Game. 
+	Player 1 and the Player 2 is the user. 
+	Player 1 and Player 2 to take Cell that is the Column and Row. 
+
+comment
+
 insert()
 {
 	if [[ ($x -lt 0) || ($x -gt 2) || ($y -lt 0) || ($y -gt 2) ]]; then
