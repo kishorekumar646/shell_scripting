@@ -1,5 +1,9 @@
 #!/bin/bash
 
+<<comment
+	sum of harmonic number
+comment
+
 read -p "Enter the number : " numbers
 harmonic_sum=1
 for (( number = 2; number <= $numbers; number++ ))
