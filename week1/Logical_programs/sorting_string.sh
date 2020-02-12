@@ -1,5 +1,9 @@
 #!/bin/bash
  
+<<comment
+	print sort the string
+comment
+
 echo "teststring" | grep -o . | sort -n |tr -d '\n'
 echo
 str="teststring"
