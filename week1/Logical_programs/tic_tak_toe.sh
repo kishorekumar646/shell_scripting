@@ -115,6 +115,5 @@ while [[ $true -eq 1 ]]; do
 	insert $x $y $board $EMPTY $player
 	display_board $board $EMPTY $true
 	echo -e "\n_____________________\n"
-	c=$(( ${board[0,0]} + ${board[0,1]} + ${board[0,2]} ))
 	display_winner $X $O $board $true
 done
